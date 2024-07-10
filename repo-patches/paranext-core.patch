@@ -1,0 +1,70 @@
+diff --git a/assets/localization/en.json b/assets/localization/en.json
+index 19468d5a..21c53317 100644
+--- a/assets/localization/en.json
++++ b/assets/localization/en.json
+@@ -1,7 +1,7 @@
+ {
+-  "%product_name%": "Platform.Bible",
++  "%product_name%": "{{ productInfo.productName }}",
+   "%insertNote%": "Insert Note",
+-  "%mainMenu_aboutPlatformBible%": "About Platform.Bible",
++  "%mainMenu_aboutPlatformBible%": "About {{ productInfo.productName }}",
+   "%mainMenu_downloadSlashInstallResources%": "Download/Install Resources",
+   "%mainMenu_downloadSlashUpdateProject%": "Download/Update Project",
+   "%mainMenu_exit%": "Exit",
+diff --git a/c-sharp/Projects/LocalParatextProjects.cs b/c-sharp/Projects/LocalParatextProjects.cs
+index ce3f5cf8..04307c8f 100644
+--- a/c-sharp/Projects/LocalParatextProjects.cs
++++ b/c-sharp/Projects/LocalParatextProjects.cs
+@@ -38,7 +38,7 @@ internal class LocalParatextProjects
+     {
+         ProjectRootFolder = Path.Join(
+             Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+-            ".platform.bible",
++            ".{{ productInfo.name }}",
+             "projects",
+             "Paratext 9 Projects"
+         );
+diff --git a/src/node/utils/util.ts b/src/node/utils/util.ts
+index 7b6b97cd..7f43954b 100644
+--- a/src/node/utils/util.ts
++++ b/src/node/utils/util.ts
+@@ -38,7 +38,7 @@ export function resolveHtmlPath(htmlFileName: string) {
+  */
+ export const getAppDir = memoizeOne((): string => {
+   return globalThis.isPackaged
+-    ? path.join(os.homedir(), '/.platform.bible')
++    ? path.join(os.homedir(), '/.{{ productInfo.name }}')
+     : path.join(__dirname, '../../../dev-appdata');
+ });
+ 
+diff --git a/src/renderer/index.ejs b/src/renderer/index.ejs
+index 9fc79089..41aba253 100644
+--- a/src/renderer/index.ejs
++++ b/src/renderer/index.ejs
+@@ -107,7 +107,7 @@
+         form-action 'self';
+         navigate-to 'none';"
+     />
+-    <title>Platform.Bible</title>
++    <title>{{ productInfo.productName }}</title>
+   </head>
+   <body>
+     <div id="root"></div>
+diff --git a/src/renderer/styles/_vars.scss b/src/renderer/styles/_vars.scss
+index 91aca15b..37bc7115 100644
+--- a/src/renderer/styles/_vars.scss
++++ b/src/renderer/styles/_vars.scss
+@@ -2,9 +2,9 @@
+ $color--platform-bible: #a70e13;
+ $color--paratext-bible: #89ae26;
+ 
+-$color--pt9-lightgreen: #b8d432;
+-$color--pt9-darkgreen: #3f511e;
+-$color--pt9-darkgray: #4c4c4c;
++$color--pt9-lightgreen: #ffef0c;
++$color--pt9-darkgreen: #ff7519;
++$color--pt9-darkgray: #d42eaa;
+ 
+ $color--text: #191919;
+ $color--text-dimmed: #aaa;
