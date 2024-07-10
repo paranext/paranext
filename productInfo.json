@@ -1,6 +1,6 @@
 {
-  "productName": "Paratext 10 Studio",
-  "appId": "org.paranext.Paratext10Studio",
+  "productName": "Platform.Bible",
+  "appId": "org.paranext.PlatformBible",
   "copyright": "Copyright (c) 2022-2024 SIL International",
   "electronBuilderPublish": {
     "provider": "github",
@@ -12,8 +12,7 @@
       "uri": "https://github.com/paranext/paranext-core.git"
     },
     "extensionRepos": [
-      { "uri": "https://github.com/paranext/paratext-bible-extensions.git" },
-      { "uri": "https://github.com/paranext/paratext-bible-internal-extensions.git" }
+      { "uri": "https://github.com/paranext/platform-bible-sample-extensions.git" }
     ]
   }
 }

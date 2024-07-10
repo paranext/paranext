@@ -1,7 +1,7 @@
 {
-  "name": "paratext-10-studio",
+  "name": "platform.bible",
   "version": "0.0.1",
-  "description": "Extensible Bible translation software. Successor to Paratext 9.",
+  "description": "Build scripts to create a white-label application on Platform.Bible",
   "keywords": ["electron", "platform", "bible", "translation", "typescript", "ts", "react", "node"],
   "homepage": "https://github.com/paranext/paranext#readme",
   "bugs": {

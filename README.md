@@ -1,6 +1,6 @@
 # Paranext
 
-Extensible Bible translation software. Successor to Paratext 9.
+Build scripts to create a white-label application on Platform.Bible
 
 <div align="center">
   <img src="assets/icon.png" width="35%" />
@@ -12,13 +12,17 @@ Extensible Bible translation software. Successor to Paratext 9.
 
 ## Summary
 
-Paratext 10 Studio is an extensible Bible translation software. It combines [Platform.Bible](https://github.com/paranext/paranext-core) with [`paratext-bible-extensions`](https://github.com/paranext/paratext-bible-extensions) and [`paratext-bible-internal-extensions`](https://github.com/paranext/paratext-bible-internal-extensions) to create a ready-to-use Bible translation experience.
+Platform.Bible is an extensible Bible translation software. Its functionality is provided almost completely by extensions in order to be very powerful and flexible, giving developers the freedom to create and to share their desired Bible translation experience.
 
-This repository only contains build scripts for creating Paratext 10 Studio which is built on Platform.Bible. It does not contain the code for Platform.Bible or any extensions. Please see [`paranext-core`](https://github.com/paranext/paranext-core) if you are looking to develop extensions on Platform.Bible.
+This repository only contains build scripts for creating a white-label application built on Platform.Bible. It does not contain the code for Platform.Bible or any extensions. Please see [`paranext-core`](https://github.com/paranext/paranext-core) if you are looking to develop extensions on Platform.Bible.
+
+Note: Platform.Bible and its official releases are at [`paranext-core`](https://github.com/paranext/paranext-core). As this repository is currently configured, running these build scripts just creates a Platform.Bible application with the wrong version number and some additional sample extensions bundled in. You must fork this repository and configure it to your needs in order for it to do something useful.
 
 ## Users
 
 This software is not yet ready for users. We'll update here with where you can install it when it is ready.
+
+If you would still like to try Platform.Bible, you can [download early releases here on GitHub](https://github.com/paranext/paranext-core/releases).
 
 ### Linux Users
 
@@ -32,17 +36,17 @@ Then simply [execute/run](https://github.com/AppImage/AppImageKit/wiki) the `.Ap
 
 ### Mac Users
 
-If you download and run the ARM release of Paratext 10 Studio from [a computer running Apple Silicon](https://support.apple.com/en-us/116943), you will likely encounter a warning from Apple's Gatekeeper stating that "Paratext 10 Studio is damaged and can't be opened. You should move it to the Trash." or something very similar:
+If you download and run the ARM release of Platform.Bible from [a computer running Apple Silicon](https://support.apple.com/en-us/116943), you will likely encounter a warning from Apple's Gatekeeper stating that "Platform.Bible is damaged and can't be opened. You should move it to the Trash." or something very similar:
 
 ![mac-arm-damaged-warning](doc-meta/mac-arm-damaged-warning.png)
 
-Unfortunately, this is the message Apple chose to display for ARM applications that are not signed (including Paratext 10 Studio since we have not yet set up application code signing on Mac).
+Unfortunately, this is the message Apple chose to display for ARM applications that are not signed (including Platform.Bible since we have not yet set up application code signing on Mac).
 
-If you trust Paratext 10 Studio and would like to run it even though it is not code signed, you will need to run the following terminal command every time you install a new version of Paratext 10 Studio:
+If you trust Platform.Bible and would like to run it even though it is not code signed, you will need to run the following terminal command every time you install a new version of Platform.Bible:
 
-`xattr -c /Applications/Paratext 10 Studio.app`
+`xattr -c /Applications/Platform.Bible.app`
 
-[`xattr -c` clears all attributes on the provided file](https://ss64.com/mac/xattr.html). Running this command removes all attributes on the currently-installed Paratext 10 Studio application file including the quarantine flag Gatekeeper puts on unsigned ARM applications downloaded from the internet.
+[`xattr -c` clears all attributes on the provided file](https://ss64.com/mac/xattr.html). Running this command removes all attributes on the currently-installed Platform.Bible application file including the quarantine flag Gatekeeper puts on unsigned ARM applications downloaded from the internet.
 
 ## Developer Install
 
@@ -189,7 +193,7 @@ This will also destroy [any changes you have made to the repositories in `temp-b
 
 ### Patches failing to apply: `error: while searching for ... ?`
 
-If you run commands that patch the repositories and encounter an error like the following:
+If you run commands that patch the repositories and encounter an error like the following (`?` at the end of each line):
 
 ```
 error: while searching for:

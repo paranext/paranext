@@ -51,20 +51,3 @@ index 9fc79089..41aba253 100644
    </head>
    <body>
      <div id="root"></div>
-diff --git a/src/renderer/styles/_vars.scss b/src/renderer/styles/_vars.scss
-index 91aca15b..37bc7115 100644
---- a/src/renderer/styles/_vars.scss
-+++ b/src/renderer/styles/_vars.scss
-@@ -2,9 +2,9 @@
- $color--platform-bible: #a70e13;
- $color--paratext-bible: #89ae26;
- 
--$color--pt9-lightgreen: #b8d432;
--$color--pt9-darkgreen: #3f511e;
--$color--pt9-darkgray: #4c4c4c;
-+$color--pt9-lightgreen: #ffef0c;
-+$color--pt9-darkgreen: #ff7519;
-+$color--pt9-darkgray: #d42eaa;
- 
- $color--text: #191919;
- $color--text-dimmed: #aaa;

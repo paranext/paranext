@@ -1,4 +1,4 @@
-/** Builds Paratext 10 Studio */
+/** Builds white-label application */
 
 import path from 'path';
 import * as fs from 'fs/promises';
@@ -105,7 +105,7 @@ console.log('Build steps enabled:', {
     await import('./clean');
   }
 
-  console.log('Building Paratext 10 Studio');
+  console.log(`Building ${productInfo.productName}`);
 
   // Clone repos
   if (shouldClone && !(await cloneAllReposSafe())) return 1;
@@ -373,8 +373,8 @@ console.log('Build steps enabled:', {
   .then((exitCode) => {
     console.log(
       exitCode === 0
-        ? 'Successfully built Paratext 10 Studio'
-        : 'Failed to build Paratext 10 Studio',
+        ? `Successfully built ${productInfo.productName}`
+        : `Failed to build ${productInfo.productName}`,
     );
 
     process.exitCode = exitCode;
@@ -382,7 +382,7 @@ console.log('Build steps enabled:', {
     return exitCode;
   })
   .catch((err) => {
-    console.error(`Error thrown while building Paratext 10 Studio: ${err}`);
+    console.error(`Error thrown while building ${productInfo.productName}: ${err}`);
 
     process.exitCode = 1;
   });

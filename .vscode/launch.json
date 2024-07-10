@@ -5,12 +5,28 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Build Paratext 10 Studio",
+      "name": "Save and Build",
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "npm",
       "skipFiles": ["<node_internals>/**"],
-      "runtimeArgs": ["run", "build"]
+      "runtimeArgs": ["run", "save-and-build"]
+    },
+    {
+      "name": "Save Repo Patches",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "skipFiles": ["<node_internals>/**"],
+      "runtimeArgs": ["run", "save-repo-patches"]
+    },
+    {
+      "name": "Reset and Patch",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "npm",
+      "skipFiles": ["<node_internals>/**"],
+      "runtimeArgs": ["run", "reset-and-patch"]
     }
   ]
 }
