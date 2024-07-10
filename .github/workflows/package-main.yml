@@ -2,7 +2,7 @@ name: Package
 
 on:
   push:
-    branches: [main, 951-build]
+    branches: [main]
   workflow_dispatch:
     inputs:
       debug_enabled:
