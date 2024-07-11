@@ -118,7 +118,7 @@ export async function applyRepoPatches(pathFromRepoRoot = '') {
         // resolve the conflicts and continue to edit the repos
         // We want to run these one-at-a-time, so we're using for/of instead of .forEach
         // eslint-disable-next-line no-await-in-loop
-        await execCommand(`git apply --3way --allow-empty --verbose ${patchPath}`, {
+        await execCommand(`git apply --3way --allow-empty --verbose "${patchPath}"`, {
           pathFromRepoRoot: repoInfo.dir,
           prefix: repoInfo.name,
         });

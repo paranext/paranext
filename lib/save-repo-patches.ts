@@ -30,7 +30,7 @@ for (const repoInfo of ALL_REPOS_INFO) {
   try {
     // We want to run these one-at-a-time, so we're using for/of instead of .forEach
     // eslint-disable-next-line no-await-in-loop
-    await execCommand(`git diff HEAD --patch > ${getPatchPath(repoInfo.name)}`, {
+    await execCommand(`git diff HEAD --patch > "${getPatchPath(repoInfo.name)}"`, {
       pathFromRepoRoot: repoInfo.dir,
       prefix: repoInfo.name,
     });

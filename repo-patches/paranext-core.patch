@@ -37,7 +37,7 @@ index 7b6b97cd..7f43954b 100644
 +    ? path.join(os.homedir(), '/.{{ productInfo.name }}')
      : path.join(__dirname, '../../../dev-appdata');
  });
- 
+
 diff --git a/src/renderer/index.ejs b/src/renderer/index.ejs
 index 9fc79089..41aba253 100644
 --- a/src/renderer/index.ejs
