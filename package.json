@@ -1,0 +1,56 @@
+{
+  "name": "platform.bible",
+  "version": "0.0.1",
+  "description": "Build scripts to create a white-label application on Platform.Bible",
+  "keywords": ["electron", "platform", "bible", "translation", "typescript", "ts", "react", "node"],
+  "homepage": "https://github.com/paranext/paranext#readme",
+  "bugs": {
+    "url": "https://github.com/paranext/paranext/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paranext/paranext.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Paranext",
+    "url": "https://github.com/paranext/"
+  },
+  "type": "module",
+  "scripts": {
+    "run-ts-node": "node --no-warnings=ExperimentalWarning --loader ts-node/esm",
+    "save-and-build": "npm run run-ts-node -- ./lib/build.ts no-clean no-clone no-install",
+    "build-ci": "npm run run-ts-node -- ./lib/build.ts no-save-repo-patches no-reset-before-build no-reset-after-build",
+    "build-custom": "npm run run-ts-node -- ./lib/build.ts",
+    "clean": "npm run run-ts-node -- ./lib/clean.ts",
+    "reset-and-patch": "npm run run-ts-node -- ./lib/reset-and-patch.ts",
+    "save-repo-patches": "npm run run-ts-node -- ./lib/save-repo-patches.ts",
+    "lint": "cross-env NODE_ENV=development eslint --ext .cjs,.js,.jsx,.ts,.tsx --cache .",
+    "lint-fix": "prettier --write \"**/*.{ts,tsx,js,jsx,cjs}\" && npm run lint",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.7",
+    "@typescript-eslint/eslint-plugin": "^7.13.1",
+    "@typescript-eslint/parser": "^7.13.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-erb": "^4.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-compat": "^5.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-no-null": "^1.0.2",
+    "eslint-plugin-no-type-assertion": "^1.3.0",
+    "eslint-plugin-promise": "^6.2.0",
+    "json5": "^2.2.3",
+    "prettier": "^3.3.2",
+    "prettier-plugin-jsdoc": "^1.3.0",
+    "rimraf": "^5.0.7",
+    "ts-node": "^10.9.2"
+  },
+  "browserslist": ["current node"],
+  "volta": {
+    "node": "20.11.1"
+  }
+}

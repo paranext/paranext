@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Product Info",
+  "description": "Data used to create a packaged build of Platform.Bible with modified branding (white label). Where possible, fields fall back to `package.json`.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "Name used inside the product for various technical things including temp folder name",
+      "type": "string"
+    },
+    "version": {
+      "description": "Version number for the product",
+      "type": "string"
+    },
+    "description": {
+      "description": "Short description explaining what the product is. Set to core's `release/app/package.json` `description`. Not sure where this is used.",
+      "type": "string"
+    },
+    "author": {
+      "description": "Primary creator of this application. Set to core's `release/app/package.json` `description`. Not sure where this is used.",
+      "anyOf": [
+        {
+          "$ref": "https://json.schemastore.org/package.json#/definitions/person",
+          "tsType": "unknown"
+        }
+      ]
+    },
+    "productName": {
+      "description": "Executable name. Will fall back to `package.json`'s `productName` then `name` if not set. See https://www.electron.build/configuration/configuration.html#configuration for more information",
+      "type": "string"
+    },
+    "appId": {
+      "description": "Application ID used with the Operating System. See https://www.electron.build/configuration/configuration.html#configuration for more information",
+      "type": "string"
+    },
+    "copyright": {
+      "description": "Copyright statement to go on the executable. See https://www.electron.build/configuration/configuration.html#configuration for more information",
+      "type": "string"
+    },
+    "electronBuilderPublish": {
+      "description": "Information about how Electron Builder should publish updates and artifacts for this application. See https://www.electron.build/configuration/publish for more information.",
+      "$ref": "https://json.schemastore.org/electron-builder.json#/properties/publish",
+      "tsType": "unknown"
+    },
+    "build": {
+      "$ref": "#/$defs/buildInfo"
+    }
+  },
+  "required": ["appId", "build"],
+  "$defs": {
+    "buildInfo": {
+      "description": "Information that determines how the application is built",
+      "type": "object",
+      "properties": {
+        "coreRepo": {
+          "description": "Information about the core repo (`paranext-core`) to clone and build",
+          "anyOf": [
+            {
+              "$ref": "#/$defs/repoInformation"
+            }
+          ]
+        },
+        "extensionRepos": {
+          "description": "Information about multi-extension repos (clones of paranext-multi-extension-template) to clone and package into the build",
+          "type": "array",
+          "items": { "$ref": "#/$defs/repoInformation" }
+        }
+      },
+      "required": ["coreRepo", "extensionRepos"]
+    },
+    "repoInformation": {
+      "description": "Information about a git repo to clone, build, and include in the application",
+      "type": "object",
+      "properties": {
+        "uri": {
+          "description": "The git clone uri for the repo",
+          "type": "string",
+          "format": "uri"
+        },
+        "branch": {
+          "description": "The name of the branch to pull when cloning the repo. Defaults to `main`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the git repo (for console logging). Defaults to attempting to get it out of `uri`",
+          "type": "string"
+        }
+      },
+      "required": ["uri"]
+    }
+  }
+}
