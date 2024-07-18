@@ -116,12 +116,16 @@ export async function applyRepoPatches(pathFromRepoRoot = '') {
       if (!shouldSkip) {
         // Apply the patch with 3-way merge resolution if the patch doesn't apply cleanly so they can
         // resolve the conflicts and continue to edit the repos
+        // Ignore whitespace because some people are seeing troubles with CRLF on Windows
         // We want to run these one-at-a-time, so we're using for/of instead of .forEach
         // eslint-disable-next-line no-await-in-loop
-        await execCommand(`git apply --3way --allow-empty --verbose "${patchPath}"`, {
-          pathFromRepoRoot: repoInfo.dir,
-          prefix: repoInfo.name,
-        });
+        await execCommand(
+          `git apply --3way --allow-empty --verbose --ignore-whitespace "${patchPath}"`,
+          {
+            pathFromRepoRoot: repoInfo.dir,
+            prefix: repoInfo.name,
+          },
+        );
       }
     } catch (e) {
       console.error(`Error on saving git patch for ${repoInfo.name}: ${e}`);
