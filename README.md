@@ -115,6 +115,8 @@ _Note: these instructions are for adjusting the application created by this repo
 
 This repository focuses primarily on modifying files found in a "core" repository containing Platform.Bible code as well as other repositories containing extensions for Platform.Bible then packaging them together to create an application that white-labels Platform.Bible and bundles in additional extensions.
 
+**Warning: Building this application involves cloning and building multiple other repositories. This may take up to 5 GB (as of 7/23/24) of disk space total.**
+
 ### Preparing the repositories for patching
 
 In order to prepare this repository for building your application or modifying the repositories involved in building your application, you must run the following command:
@@ -229,6 +231,10 @@ If your GitHub Actions are failing because they cannot access private GitHub rep
    - Metadata
 
 2. Add the new personal access token as a [Repository Secret](https://github.com/paranext/paranext/settings/secrets/actions) called `READ_REPOS_TOKEN`
+
+### Git unexpectedly asking for GitHub username and password (SSH authentication)
+
+If Git unexpectedly asks for your username and password while running builds, it is likely trying to clone private GitHub repositories via HTTPS which is not configured on your computer. If you want to provide your username and password to Git, feel free to do so. If you prefer to use SSH authentication with GitHub, you need to change the uris for the private repos in `productInfo.json` to point to the SSH uris for those repos.
 
 ## JavaScript Tool Manager
 
