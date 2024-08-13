@@ -26,7 +26,7 @@ await cloneAllReposSafe(false);
 // `npm ci` all repos if they need it
 if (!(await npmCiAllReposSafe(true))) process.exit(1);
 
-// Hard reset all changes and pull all repos (we're ignoring untracked files for now)
+// Hard reset all changes and pull all repos
 if (!(await hardResetAllReposSafe())) process.exit(1);
 // We want to run these one-at-a-time, so we're using for/of instead of .forEach
 // eslint-disable-next-line no-restricted-syntax
@@ -46,5 +46,5 @@ for (const repoInfo of ALL_REPOS_INFO) {
 await applyRepoPatches();
 
 console.log(
-  `Successfully reset and patched all repos. If you would like to edit the patches, please make desired edits to repos in ${TEMP_BUILD_FOLDER} then run \`npm run save-repo-patches\` (note: untracked files are ignored)`,
+  `Successfully reset and patched all repos. If you would like to edit the patches, please make desired edits to repos in ${TEMP_BUILD_FOLDER} then run \`npm run save-repo-patches\``,
 );

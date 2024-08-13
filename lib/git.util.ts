@@ -66,11 +66,18 @@ export async function cloneAllReposSafe(shouldReturnEarlyOnError = true) {
  * @returns `true` if successfully hard reset all repos, `false` otherwise
  */
 export async function hardResetAllReposSafe() {
-  // Hard reset all changes (we're ignoring untracked files for now)
+  // Hard reset all changes including untracked files
   // We want to run these one-at-a-time, so we're using for/of instead of .forEach
   // eslint-disable-next-line no-restricted-syntax
   for (const repoInfo of ALL_REPOS_INFO) {
     try {
+      // Staging all files lets us remove untracked files
+      // We want to run these one-at-a-time, so we're using for/of instead of .forEach
+      // eslint-disable-next-line no-await-in-loop
+      await execCommand('git add .', {
+        pathFromRepoRoot: repoInfo.dir,
+        prefix: repoInfo.name,
+      });
       // We want to run these one-at-a-time, so we're using for/of instead of .forEach
       // eslint-disable-next-line no-await-in-loop
       await execCommand(`git reset --hard`, {
@@ -78,7 +85,9 @@ export async function hardResetAllReposSafe() {
         prefix: repoInfo.name,
       });
     } catch (e) {
-      console.error(`Error on hard resetting changes to ${repoInfo.name}: ${e}`);
+      console.error(
+        `Error on staging all files and hard resetting changes to ${repoInfo.name}: ${e}`,
+      );
       return false;
     }
   }
