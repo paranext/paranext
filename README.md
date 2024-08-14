@@ -125,7 +125,7 @@ In order to prepare this repository for building your application or modifying t
 npm run reset-and-patch
 ```
 
-This command clones the repositories involved in building your application into `temp-build` (if necessary), resets and pulls them to their latest revision, and patches them with the patches contained in `repo-patches`. Once you run this command, you are ready to modify the repositories as desired.
+This command clones the repositories involved in building your application into `temp-build` (if necessary), resets and pulls them to their latest revision (including deleting untracked files), and patches them with the patches contained in `repo-patches`. Once you run this command, you are ready to modify the repositories as desired.
 
 Note: you can also run this command to reset the files in the repositories back to the latest saved repo patches if you [made modifications](#modifying-the-repo-patches) that you do not want to save.
 
@@ -141,13 +141,13 @@ Note: if you change the repositories linked in your `productInfo.json`, you will
 
 #### Modifying the repo patches
 
-Each repository involved in building your application may be git patched in order to modify the contents of the repository to suit your needs. After [running `npm run reset-and-patch`](#preparing-the-repositories-for-patching), open their local clones in `temp-build` and make any edits desired. You can optionally refer to values in `productInfo.json` by specifying `{{ productInfo.<key> }}` in the `temp-build` code, and it will be replaced with the appropriate value when [building the application](#building-the-application). See `temp-build/paranext-core/assets/localization/en.json` for an example.
+Each repository involved in building your application may be git patched in order to modify the contents of the repository to suit your needs. After [running `npm run reset-and-patch`](#preparing-the-repositories-for-patching), open their local clones in `temp-build` and make edits and new files as desired. You can optionally refer to values in `productInfo.json` by specifying `{{ productInfo.<key> }}` in the `temp-build` code, and it will be replaced with the appropriate value when [building the application](#building-the-application). See `temp-build/paranext-core/assets/localization/en.json` for an example.
 
 Note: you can only refer to values that are direct keys of the top-level object in `productInfo.json` like `productInfo.productName`. You cannot refer to deeper values like `productInfo.build.coreRepo.uri` (please file an issue if you need to be able to do this). Also note you can refer to values that exist in `models/product-info.schema.json` but are not necessarily present in `productInfo.json` like `productInfo.name` because they are filled in if they are not present (see `lib/product-info.data.ts`). You can also specify additional properties not found in the schema like `productInfo.someOtherThing` and use them if desired.
 
 ### Save repo patches and build the application
 
-Once you have adjusted `productInfo.json` to your liking and have made edits to the repos in `temp-build`, you can run the following command to save your repo patch changes:
+Once you have adjusted `productInfo.json` to your liking and have made edits to the repos in `temp-build`, you can run the following command to save your repo patch changes (including untracked files):
 
 ```bash
 npm run save-repo-patches
@@ -159,7 +159,7 @@ Alternatively, if you would like to save your repo patch changes and build the a
 npm run save-and-build
 ```
 
-Note: due to the way the build scripts work, you must save repo patches before building to make sure you do not make unintentional changes to your patches. Alternatively, if you prefer to clear out all changes since the patches were last saved and build, [you can do so by running different commands](#build-the-application-without-modifications).
+Note: due to the way the build scripts work, you must save repo patches before building to make sure you do not make unintentional changes to your patches. Alternatively, if you prefer to clear out all changes and untracked files since the patches were last saved and built, [you can do so by running different commands](#build-the-application-without-modifications).
 
 ## Build the application without modifications
 
@@ -169,13 +169,13 @@ If you do not want to do any development but just want to build the application 
 npm run build-ci
 ```
 
-This will destroy [any changes you have made to the repositories in `temp-build`](#modifying-the-repo-patches), so please be sure to do this only after saving or if you want to reset changes. This will also leave your `temp-build` folder in an in-between state that needs to be cleaned or reset. Please proceed to [run `npm run reset-and-patch](#preparing-the-repositories-for-patching) if you want to modify the application or run the following command to clean out `temp-build` if you want to remove temporary build files completely:
+This will destroy [any changes and untracked files you have made to the repositories in `temp-build`](#modifying-the-repo-patches), so please be sure to do this only after saving or if you want to reset changes. This will also leave your `temp-build` folder in an in-between state that needs to be cleaned or reset. Please proceed to [run `npm run reset-and-patch](#preparing-the-repositories-for-patching) if you want to modify the application or run the following command to clean out `temp-build` if you want to remove temporary build files completely:
 
 ```bash
 npm run clean
 ```
 
-This will also destroy [any changes you have made to the repositories in `temp-build`](#modifying-the-repo-patches), so please be sure to do this only after saving or if you want to reset changes.
+This will also destroy [any changes and untracked files you have made to the repositories in `temp-build`](#modifying-the-repo-patches), so please be sure to do this only after saving or if you want to reset changes.
 
 ## Publishing
 

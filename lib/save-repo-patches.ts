@@ -23,11 +23,18 @@ console.log(
 // Make sure the repos patch folder exists because > doesn't work without it
 await fs.mkdir(getPatchPath(''), { recursive: true });
 
-// Save a patch for each repo (we're ignoring untracked files for now)
+// Save a patch for each repo including untracked files
 // We want to run these one-at-a-time, so we're using for/of instead of .forEach
 // eslint-disable-next-line no-restricted-syntax
 for (const repoInfo of ALL_REPOS_INFO) {
   try {
+    // Staging all files lets us track untracked files
+    // We want to run these one-at-a-time, so we're using for/of instead of .forEach
+    // eslint-disable-next-line no-await-in-loop
+    await execCommand('git add .', {
+      pathFromRepoRoot: repoInfo.dir,
+      prefix: repoInfo.name,
+    });
     // We want to run these one-at-a-time, so we're using for/of instead of .forEach
     // eslint-disable-next-line no-await-in-loop
     await execCommand(`git diff HEAD --patch > "${getPatchPath(repoInfo.name)}"`, {
@@ -35,11 +42,9 @@ for (const repoInfo of ALL_REPOS_INFO) {
       prefix: repoInfo.name,
     });
   } catch (e) {
-    console.error(`Error on saving git patch for ${repoInfo.name}: ${e}`);
+    console.error(`Error on staging all files and saving git patch for ${repoInfo.name}: ${e}`);
     process.exit(1);
   }
 }
 
-console.log(
-  'Successfully saved patches of all staged and unstaged changes to each repo (ignoring untracked files)',
-);
+console.log('Successfully saved patches of all staged and unstaged changes to each repo');
