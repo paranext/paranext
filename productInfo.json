@@ -1,7 +1,7 @@
 {
-  "productName": "Platform.Bible",
+  "productName": "Platform",
   "appId": "org.paranext.PlatformBible",
-  "copyright": "Copyright (c) 2022-2024 SIL International",
+  "copyright": "Copyright © 2022-2024 SIL International",
   "electronBuilderPublish": {
     "provider": "github",
     "owner": "paranext",
