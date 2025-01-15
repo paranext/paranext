@@ -244,7 +244,8 @@ If you don't use Volta just look at the `volta` property in [package.json](https
 
 ## License
 
-MIT © [SIL International](https://www.sil.org/)
+This project is licensed under the [MIT License](./LICENSE).
+Copyright © 2022-2025 [SIL Global](https://www.sil.org/) and [United Bible Societies](https://unitedbiblesocieties.org/)
 
 <!-- define variables used above -->
 
