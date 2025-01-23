@@ -78,7 +78,7 @@
           "format": "uri"
         },
         "branch": {
-          "description": "The name of the branch to pull when cloning the repo. Defaults to `main`",
+          "description": "The name of the branch, tag, or commit to pull when cloning the repo. Defaults to `main`",
           "type": "string"
         },
         "name": {
