@@ -9,10 +9,14 @@
   },
   "build": {
     "coreRepo": {
-      "uri": "https://github.com/paranext/paranext-core.git"
+      "uri": "https://github.com/paranext/paranext-core.git",
+      "branch": "main"
     },
     "extensionRepos": [
-      { "uri": "https://github.com/paranext/platform-bible-sample-extensions.git" }
+      {
+        "uri": "https://github.com/paranext/platform-bible-sample-extensions.git",
+        "branch": "main"
+      }
     ]
   }
 }

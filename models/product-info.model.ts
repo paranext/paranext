@@ -65,7 +65,7 @@ export interface BuildInfo {
 export interface RepoInformation {
   /** The git clone uri for the repo */
   uri: string;
-  /** The name of the branch to pull when cloning the repo. Defaults to `main` */
+  /** The name of the branch, tag, or commit to pull when cloning the repo. Defaults to `main` */
   branch?: string;
   /** Name of the git repo (for console logging). Defaults to attempting to get it out of `uri` */
   name?: string;
