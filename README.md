@@ -3,7 +3,7 @@
 Build scripts to create a white-label application on Platform.Bible
 
 <div align="center">
-  <img src="assets/icon.png" width="35%" />
+  <img src="assets/icon.png" width="256" />
 </div>
 
 <div align="center">
@@ -169,7 +169,7 @@ If you do not want to do any development but just want to build the application 
 npm run build-ci
 ```
 
-This will destroy [any changes and untracked files you have made to the repositories in `temp-build`](#modifying-the-repo-patches), so please be sure to do this only after saving or if you want to reset changes. This will also leave your `temp-build` folder in an in-between state that needs to be cleaned or reset. Please proceed to [run `npm run reset-and-patch](#preparing-the-repositories-for-patching) if you want to modify the application or run the following command to clean out `temp-build` if you want to remove temporary build files completely:
+This will destroy [any changes and untracked files you have made to the repositories in `temp-build`](#modifying-the-repo-patches), so please be sure to do this only after saving or if you want to reset changes. This will also leave your `temp-build` folder in an in-between state that needs to be cleaned or reset. Please proceed to [run `npm run reset-and-patch`](#preparing-the-repositories-for-patching) if you want to modify the application or run the following command to clean out `temp-build` if you want to remove temporary build files completely:
 
 ```bash
 npm run clean
@@ -195,7 +195,8 @@ This will also destroy [any changes and untracked files you have made to the rep
 7. Commit these changes to your release branch and push the commit to GitHub.
 8. Once the GitHub build **Action** has finished, it will add build artifact files to the draft release. Remove the `.blockmap` files and leave the `.yml` files and the installers and executable, e.g. `.exe` on Windows.
 9. Publish the release on GitHub.
-10. Merge the release branch back into **main** with a merge commit.
+10. Remove the branch name specifiers for each repository in your `productInfo.json` that you added in step 4.
+11. Merge the release branch back into **main** with a merge commit.
 
 ## Troubleshooting
 
@@ -234,15 +235,20 @@ If your GitHub Actions are failing because they cannot access private GitHub rep
 
 2. Add the new personal access token as a [Repository Secret](https://github.com/paranext/paranext/settings/secrets/actions) called `READ_REPOS_TOKEN`
 
-### Git unexpectedly asking for GitHub username and password (SSH authentication)
+### Git unexpectedly asks for GitHub credentials
 
-If Git unexpectedly asks for your username and password while running builds, it is likely trying to clone private GitHub repositories via HTTPS which is not configured on your computer. If you want to provide your username and password to Git, feel free to do so. If you prefer to use SSH authentication with GitHub, you need to change the uris for the private repos in `productInfo.json` to point to the SSH uris for those repos.
+If Git unexpectedly asks you for credentials while running builds, it is likely trying to clone private GitHub repositories via HTTPS which is not configured on your computer. You have a few options to resolve this issue:
+
+- If it is not installed yet, [install `git-credential-manager`](https://github.com/git-ecosystem/git-credential-manager/blob/release/docs/install.md). Then, run the build again, and it will open a browser to the GitHub website for you to log in. The website will pass an authorization code to Git (OAuth). `git-credential-manager` comes bundled with Git in some installation methods.
+  - We have not tested installing `git-credential-manager` _separately from Git_ and logging in with it, so please let us know if you try this method.
+- Provide your username and a [personal access token](https://github.com/settings/personal-access-tokens) to Git.
+- If you prefer to use SSH authentication with GitHub, you need to change the uris for the private repos in `productInfo.json` to point to the SSH uris for those repos.
 
 ## JavaScript Tool Manager
 
 You can use [Volta](https://volta.sh/) with this repo to use the right version of tools such as **node** and **npm**.
 
-If you don't use Volta just look at the `volta` property in [package.json](https://github.com/paranext/paranext/blob/main/package.json) to see the right tool versions to install in your preferred way.
+If you don't use Volta just look at the `volta` property in [`package.json`](https://github.com/paranext/paranext/blob/main/package.json) to see the right tool versions to install in your preferred way.
 
 ## License
 
