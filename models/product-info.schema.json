@@ -17,7 +17,7 @@
       "type": "string"
     },
     "author": {
-      "description": "Primary creator of this application. Set to core's `release/app/package.json` `description`. Not sure where this is used.",
+      "description": "Primary creator of this application. Set to core's `release/app/package.json` `author`. Not sure where this is used.",
       "anyOf": [
         {
           "$ref": "https://json.schemastore.org/package.json#/definitions/person",

@@ -17,7 +17,7 @@ if (!__dirname) {
 /* eslint-enable no-underscore-dangle */
 
 console.log(
-  'Saving patches of all staged and unstaged changes to each repo (ignoring untracked files)',
+  'Saving patches of all staged and unstaged changes to each repo including untracked files',
 );
 
 // Make sure the repos patch folder exists because > doesn't work without it

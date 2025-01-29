@@ -23,8 +23,8 @@ export interface ProductInfo {
    */
   description?: string;
   /**
-   * Primary creator of this application. Set to core's `release/app/package.json` `description`.
-   * Not sure where this is used.
+   * Primary creator of this application. Set to core's `release/app/package.json` `author`. Not
+   * sure where this is used.
    */
   author?: Person;
   /**
