@@ -1,5 +1,5 @@
 diff --git a/assets/localization/en.json b/assets/localization/en.json
-index 0329409e..ced0c3cd 100644
+index 25e15175..df4f5297 100644
 --- a/assets/localization/en.json
 +++ b/assets/localization/en.json
 @@ -27,7 +27,7 @@
@@ -21,7 +21,7 @@ index 0329409e..ced0c3cd 100644
    "%project_language_missing%": "*Language Missing*",
    "%project_name_missing%": "_NoName_",
 diff --git a/c-sharp/Projects/LocalParatextProjects.cs b/c-sharp/Projects/LocalParatextProjects.cs
-index ab41adbc..4d299d47 100644
+index 01c5acee..e0d9e68f 100644
 --- a/c-sharp/Projects/LocalParatextProjects.cs
 +++ b/c-sharp/Projects/LocalParatextProjects.cs
 @@ -49,7 +49,7 @@ internal class LocalParatextProjects
@@ -33,6 +33,30 @@ index ab41adbc..4d299d47 100644
              "projects",
              "Paratext 9 Projects"
          );
+diff --git a/electron-builder.json5 b/electron-builder.json5
+index 9c10c630..edbd5899 100644
+--- a/electron-builder.json5
++++ b/electron-builder.json5
+@@ -2,7 +2,7 @@
+  * @see https://www.electron.build/configuration/configuration
+  */
+ {
+-  productName: 'Platform.Bible',
++  productName: '{{ productInfo.productName }}',
+   appId: 'org.paranext.PlatformBible',
+   copyright: 'Copyright © 2017-2025 SIL Global and United Bible Societies',
+   protocols: {
+@@ -124,8 +124,8 @@
+       {
+         'dot-platform-bible': {
+           interface: 'personal-files',
+-          read: ['$HOME/.platform.bible'],
+-          write: ['$HOME/.platform.bible'],
++          read: ['$HOME/.{{ productInfo.name }}'],
++          write: ['$HOME/.{{ productInfo.name }}'],
+         },
+       },
+     ],
 diff --git a/src/node/utils/util.ts b/src/node/utils/util.ts
 index 7b6b97cd..7f43954b 100644
 --- a/src/node/utils/util.ts
