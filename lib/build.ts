@@ -225,6 +225,26 @@ console.log('Build steps enabled:', {
     electronBuilderConfig.protocols.name = productInfo.name;
     electronBuilderConfig.protocols.schemes = [productInfo.name];
 
+    // Update snap plugs
+    if (electronBuilderConfig.snap && Array.isArray(electronBuilderConfig.snap.plugs)) {
+      electronBuilderConfig.snap.plugs = electronBuilderConfig.snap.plugs.map(
+        // We filter down the type for 'plug' immediately inside the map function
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        (plug: any) => {
+          if (typeof plug === 'object' && plug) {
+            const key = Object.keys(plug).find((k) => k.includes('dot-platform-bible'));
+            if (key) {
+              const newKey = `dot-${productInfo.name}`;
+              const folder = `$HOME/.${productInfo.name}`;
+              plug[newKey] = { ...plug[key], read: folder, write: folder };
+              if (newKey !== key) delete plug[key];
+            }
+          }
+          return plug;
+        },
+      );
+    }
+
     // Add additional extensions folder to electron builder config
     const additionalExtensionsCopyInstructions = {
       from: `./${ADDITIONAL_EXTENSIONS_FOLDER}`,
