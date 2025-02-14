@@ -1,5 +1,5 @@
 diff --git a/assets/localization/en.json b/assets/localization/en.json
-index 0329409e..ced0c3cd 100644
+index 25e15175..df4f5297 100644
 --- a/assets/localization/en.json
 +++ b/assets/localization/en.json
 @@ -27,7 +27,7 @@
@@ -21,7 +21,7 @@ index 0329409e..ced0c3cd 100644
    "%project_language_missing%": "*Language Missing*",
    "%project_name_missing%": "_NoName_",
 diff --git a/c-sharp/Projects/LocalParatextProjects.cs b/c-sharp/Projects/LocalParatextProjects.cs
-index ab41adbc..4d299d47 100644
+index 01c5acee..e0d9e68f 100644
 --- a/c-sharp/Projects/LocalParatextProjects.cs
 +++ b/c-sharp/Projects/LocalParatextProjects.cs
 @@ -49,7 +49,7 @@ internal class LocalParatextProjects
