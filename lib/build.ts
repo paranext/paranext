@@ -236,7 +236,7 @@ console.log('Build steps enabled:', {
             if (key) {
               const newKey = `dot-${productInfo.name}`;
               const folder = `$HOME/.${productInfo.name}`;
-              plug[newKey] = { ...plug[key], read: folder, write: folder };
+              plug[newKey] = { ...plug[key], read: [folder], write: [folder] };
               if (newKey !== key) delete plug[key];
             }
           }
