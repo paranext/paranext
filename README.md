@@ -244,6 +244,19 @@ If Git unexpectedly asks you for credentials while running builds, it is likely 
 - Provide your username and a [personal access token](https://github.com/settings/personal-access-tokens) to Git.
 - If you prefer to use SSH authentication with GitHub, you need to change the uris for the private repos in `productInfo.json` to point to the SSH uris for those repos.
 
+### Windows installers are not signed by a certificate
+
+If you want your Windows installer to be signed by a certificate so it is trusted by Windows, you need to obtain a certificate from a trusted certificate provider like [digicert](https://www.digicert.com/). If you use digicert specifically, then you can add the following secrets to your repo in GitHub and uncomment the [`Code signing - Windows` block in `publish.yml`](.github/workflows/publish.yml#L139):
+
+- WIN_CERTIFICATE_SHA1_HASH
+- WIN_CODE_SIGNING_CERT_HOST
+- WIN_CODE_SIGNING_CERT_HOST_API_KEY
+- WIN_CODE_SIGNING_CLIENT_CERT
+- WIN_CODE_SIGNING_CLIENT_CERT_PASSWORD
+- WIN_CODE_SIGNING_KEYPAIR_ALIAS
+
+If you use a certificate provider other than digicert, you will need to add a step to your publishing workflow that handles the signing process used by that certificate provider. The commented out step in `publish.yml` will only work with digicert certificates.
+
 ## JavaScript Tool Manager
 
 You can use [Volta](https://volta.sh/) with this repo to use the right version of tools such as **node** and **npm**.
