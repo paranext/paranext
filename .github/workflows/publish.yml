@@ -125,15 +125,41 @@ jobs:
         run: |
           npm install
 
-      - name: Publish releases - Windows
+      - name: Prepare release - Windows
         # If the branch is labeled as a release version (e.g. "release/v1.2.3"),
         if: ${{ matrix.os == env.OS_WINDOWS && startsWith(github.ref, 'refs/heads/release/v') && contains(github.ref, '.') }}
         env:
-          # set the build script to publish the builds
-          BUILD_PUBLISH: true
-          # This is used for uploading release assets to github
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run build-ci
+        run: |
+          npm run build-ci
+          mkdir temp-build\\paranext-core\\release\\staged
+          move temp-build\\paranext-core\\release\\build\\*Setup*.exe temp-build\\paranext-core\\release\\staged
+
+      # If you need to sign Windows installers, enter the necessary secrets and uncomment this block
+      # - name: Code signing - Windows
+      # if: ${{ matrix.os == env.OS_WINDOWS && startsWith(github.ref, 'refs/heads/release/v') && contains(github.ref, '.') }}
+      # See https://github.com/cognitedata/code-sign-action/blob/main/README.md for descriptions
+      # env:
+      #   CERTIFICATE_HOST: ${{ secrets.WIN_CODE_SIGNING_CERT_HOST }}
+      #   CERTIFICATE_HOST_API_KEY: ${{ secrets.WIN_CODE_SIGNING_CERT_HOST_API_KEY }}
+      #   CERTIFICATE_SHA1_HASH: ${{ secrets.WIN_CERTIFICATE_SHA1_HASH }}
+      #   CLIENT_CERTIFICATE: ${{ secrets.WIN_CODE_SIGNING_CLIENT_CERT }}
+      #   CLIENT_CERTIFICATE_PASSWORD: ${{ secrets.WIN_CODE_SIGNING_CLIENT_CERT_PASSWORD }}
+      #   KEYPAIR_ALIAS: ${{ secrets.WIN_CODE_SIGNING_KEYPAIR_ALIAS }}
+      # uses: cognitedata/code-sign-action/@v3
+      # with:
+      #   path-to-binary: 'temp-build\\paranext-core\\release\\staged'
+
+      - name: Publish release - Windows
+        if: ${{ matrix.os == env.OS_WINDOWS && startsWith(github.ref, 'refs/heads/release/v') && contains(github.ref, '.') }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: 'Windows-PlatformBible-${{ steps.package_json.outputs.version }}'
+          path: temp-build/paranext-core/release/staged
+          if-no-files-found: error
+          compression-level: 0
 
       - name: Publish releases - macOS
         # If the branch is labeled as a release version (e.g. "release/v1.2.3"),
