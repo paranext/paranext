@@ -181,7 +181,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: 'macOS-PlatformBible-${{ steps.package_json.outputs.version }}'
-          path: temp-build/paranext-core/release/staged
+          path: |
+            ./dist/*.dmg
           if-no-files-found: error
           compression-level: 0
 
