@@ -40,37 +40,29 @@ Then simply [execute/run](https://github.com/AppImage/AppImageKit/wiki) the `.Ap
 
 ### Mac Users
 
-If you download and run the ARM release of Platform.Bible from [a computer running Apple Silicon](https://support.apple.com/en-us/116943), you will likely encounter a warning from Apple's Gatekeeper stating that "Platform.Bible is damaged and can't be opened. You should move it to the Trash." or something very similar:
+If you download and run the ARM release of Platform.Bible from [a computer running Apple Silicon](https://support.apple.com/en-us/116943), you will likely encounter a warning from Apple's Gatekeeper stating that "Platform.Bible is an app downloaded from the Internet. Are you sure you want to open it?":
 
-![mac-arm-damaged-warning](doc-meta/mac-arm-damaged-warning.png)
+![mac-arm-downloaded-internet-warning](doc-meta/mac-arm-downloaded-internet-warning.png)
 
-Unfortunately, this is the message Apple chose to display for ARM applications that are not signed (including Platform.Bible since we have not yet set up application code signing on Mac).
-
-If you trust Platform.Bible and would like to run it even though it is not code signed, you will need to run the following terminal command every time you install a new version of Platform.Bible:
-
-`xattr -c /Applications/Platform.Bible.app`
-
-[`xattr -c` clears all attributes on the provided file](https://ss64.com/mac/xattr.html). Running this command removes all attributes on the currently-installed Platform.Bible application file including the quarantine flag Gatekeeper puts on unsigned ARM applications downloaded from the internet.
+Don't be alarmed! This is a typical warning, seen when downloading most apps from the Internet. It also says "Apple checked it for malicious software and none was detected." If you trust Platform.Bible and would like to run it select "Open."
 
 ## Developer Install
 
-_Note: The following development pre-requisite instructions are a duplicate of those found in [`paranext-core`'s Developer Install section](https://github.com/paranext/paranext-core?tab=readme-ov-file#developer-install). If you encounter issues, please refer to that section for the most up-to-date instructions on satisfying development pre-requisites._
+_Note: The following development pre-requisite instructions are a duplicate of those found in [`paranext-core`'s Developer Install section](https://github.com/paranext/paranext-core?tab=readme-ov-file#developer-install). If you encounter issues, please refer to that section for the most up-to-date instructions on satisfying development prerequisites._
 
-Set up pre-requisites for building:
+Set up prerequisites for building:
 
-### Linux Development Pre-requisites
+### Linux Development Prerequisites
 
 Add the system libraries needed for Electron, [Build Instructions (Linux)](https://www.electronjs.org/docs/latest/development/build-instructions-linux).
 
-### macOS Development Pre-requisites
+### macOS Development Prerequisites
 
 macOS doesn't come preinstalled with all the
 [icu4c](https://unicode-org.github.io/icu/userguide/icu4c/) libraries. They must be
 installed separately to provide Unicode support to our .NET code. Platform.Bible is
 configured to expect those libraries to be installed using
-[MacPorts](https://www.macports.org/). The
-[icu package on MacPorts](https://ports.macports.org/port/icu/) has the icu4c
-libraries needed for icu.net to run properly.
+[MacPorts](https://www.macports.org/) or [Homebrew](https://brew.sh/).
 
 The build processes are configured to automatically download and package icu4c
 libraries with the application, but for development this has to be done manually.
@@ -86,7 +78,16 @@ export DYLD_FALLBACK_LIBRARY_PATH="$HOME/lib:/usr/local/lib:/usr/lib:/opt/local/
 If you need to set environment variables like the above, consider adding them to
 your `.zprofile` so you don't have to remember to do it manually.
 
-### All Platforms Development Pre-requisites
+#### Configuring ICU with MacPorts
+
+Use the
+[icu package on MacPorts](https://ports.macports.org/port/icu/).
+
+#### Configuring ICU with Homebrew
+
+Use the [icu4c package on Homebrew](https://formulae.brew.sh/formula/icu4c@77#default).
+
+### All Platforms Development Prerequisites
 
 Install [`Node.js` version >=18.0.0](https://nodejs.org/) (18.0.0 or greater is required for using `fetch`). We recommend using [Volta](#javascript-tool-manager).
 
