@@ -30,13 +30,17 @@ If you would still like to try Platform.Bible, you can [download early releases 
 
 ### Linux Users
 
-To use `.AppImage` files in Linux, [install FUSE](https://github.com/AppImage/AppImageKit/wiki/FUSE) (you only need to do this once), for example, on Ubuntu (>= 22.04):
+We can produce [`snap` packages](<https://en.wikipedia.org/wiki/Snap_(software)>) available [on the snap store](https://snapcraft.io/) for users to run our
+software on Linux. Once you have all the `snap` tools installed for your flavor of Linux, run `sudo snap install <your snap name>` or `sudo snap install <your snap name> --channel=edge` for our most recent, pre-release build that has passed our limited, automated testing suite.
 
-```bash
-sudo apt install libfuse2
+To install a locally created `snap` package, run the following commands:
+
+```sh
+sudo snap install <path to snap file> --dangerous
+sudo snap connect <your snap name>:dot-<your snap name>
 ```
 
-Then simply [execute/run](https://github.com/AppImage/AppImageKit/wiki) the `.AppImage` file, which you can download from [Releases](https://github.com/paranext/paranext/releases).
+Some users may find that not everything works properly in Linux without some additional setup. Please see [How to set up Platform.Bible on Linux](https://github.com/paranext/paranext/wiki/How-to-set-up-Platform.Bible-on-Linux) for more information.
 
 ### Mac Users
 
