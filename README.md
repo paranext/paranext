@@ -18,7 +18,7 @@ Build scripts to create a white-label application on Platform.Bible
 
 Platform.Bible is an extensible Bible translation software. Its functionality is provided almost completely by extensions in order to be very powerful and flexible, giving developers the freedom to create and to share their desired Bible translation experience.
 
-This repository only contains build scripts for creating a white-label application built on Platform.Bible. It does not contain the code for Platform.Bible or any extensions. Please see [`paranext-core`](https://github.com/paranext/paranext-core) if you are looking to develop extensions on Platform.Bible.
+This repository only contains build scripts for creating a white-label application built on Platform.Bible. It does not contain the code for Platform.Bible or any [extensions](#extension-developers).
 
 Note: Platform.Bible and its official releases are at [`paranext-core`](https://github.com/paranext/paranext-core). As this repository is currently configured, running these build scripts just creates a Platform.Bible application with the wrong version number and some additional sample extensions bundled in. You must fork this repository and configure it to your needs in order for it to do something useful.
 
@@ -49,6 +49,14 @@ If you download and run the ARM release of Platform.Bible from [a computer runni
 ![mac-arm-downloaded-internet-warning](doc-meta/mac-arm-downloaded-internet-warning.png)
 
 Don't be alarmed! This is a typical warning, seen when downloading most apps from the Internet. It also says "Apple checked it for malicious software and none was detected." If you trust Platform.Bible and would like to run it select "Open."
+
+## Extension Developers
+
+In addition to the [core extensions that are included with Platform.Bible](https://github.com/paranext/paranext-core/extensions), developers can create other extensions for use in Platform.Bible or any white-label product based on it. Extensions can either be bundled with a product or installed individually by users. Please see [Extension Template wiki](https://github.com/paranext/paranext-extension-template/wiki) for guides on developing additional extensions.
+
+A white-label product based on Platform.Bible will typically include custom extensions beyond those bundled with Platform.Bible itself. To develop such extensions, you will need to make a separate repo with those extensions. See [Modifying productInfo.json](#modifying-productinfojson) for more information about bundling extensions into your product.
+
+Extensions that are not bundled can be made available for users to install. See [Running your extension in an app](https://github.com/paranext/paranext-extension-template/wiki/Debugging-Your-Extension-in-the-Production-Application#running-your-extension-in-an-app) for installation information.
 
 ## Developer Install
 
