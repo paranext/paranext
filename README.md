@@ -122,7 +122,7 @@ cd paranext
 npm install
 ```
 
-## To update this extension from the template
+## To update this respository from the template
 
 This repository is forked from [`paranext`](https://github.com/paranext/paranext), which is periodically updated to reflect changes in [`Platform.Bible`](https://github.com/paranext/paranext-core) that affect white-labeling. We recommend you periodically update your repository by merging in the latest `paranext` template updates.
 
