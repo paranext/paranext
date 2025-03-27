@@ -122,6 +122,25 @@ cd paranext
 npm install
 ```
 
+## To update this extension from the template
+
+This repository is forked from [`paranext`](https://github.com/paranext/paranext), which is periodically updated to reflect changes in [`Platform.Bible`](https://github.com/paranext/paranext-core) that affect white-labeling. We recommend you periodically update your repository by merging in the latest `paranext` template updates.
+
+To set up this repository to be updated from the template, run the following command once after cloning it:
+
+```bash
+git remote add template https://github.com/paranext/paranext
+```
+
+To update this repository from the template, first make sure the current (checked-out) branch of your local repository has no working changes. Then run the following commands:
+
+```bash
+git fetch template
+git merge template/main --allow-unrelated-histories
+```
+
+**Note:** The merge/squash commits created when updating this repository from the template are important; Git uses them to compare the files for future updates. If you edit this repository's Git history, please preserve these commits (do not squash them, for example) to avoid unnecessary merge conflicts in the future.
+
 ## Development
 
 _Note: these instructions are for adjusting the application created by this repository that white-labels Platform.Bible. Please see [`paranext-core`](https://github.com/paranext/paranext-core) if you are looking to develop extensions on Platform.Bible._
