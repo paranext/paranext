@@ -62,11 +62,14 @@ const filledBuildInfo: BuildInfo = Object.freeze({
   extensionRepos: MULTI_EXTENSION_REPOS_INFO,
 });
 
+const productName = partialProductInfo.productName ?? packageInfo.productName ?? packageInfo.name;
+
 const productInfo: ProductInfo = Object.freeze({
   name: packageInfo.name,
   version: packageInfo.version,
   description: packageInfo.description,
-  productName: packageInfo.productName ?? packageInfo.name,
+  productName,
+  productShortName: productName,
   author: packageInfo.author,
   ...partialProductInfo,
   build: filledBuildInfo,

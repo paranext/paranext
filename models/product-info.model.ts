@@ -33,6 +33,11 @@ export interface ProductInfo {
    */
   productName?: string;
   /**
+   * Short name, to be used in places where the full name is too long. Will fall back to
+   * `productName` if not set
+   */
+  productShortName?: string;
+  /**
    * Application ID used with the Operating System. See
    * https://www.electron.build/configuration/configuration.html#configuration for more information
    */
