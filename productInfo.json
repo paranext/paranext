@@ -1,5 +1,6 @@
 {
-  "productName": "Platform",
+  "productName": "Platform.Bible",
+  "productShortName": "Platform",
   "appId": "org.paranext.PlatformBible",
   "copyright": "Copyright © 2022-2025 SIL Global and United Bible Societies",
   "electronBuilderPublish": {
