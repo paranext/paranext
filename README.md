@@ -50,6 +50,12 @@ If you download and run the ARM release of Platform.Bible from [a computer runni
 
 Don't be alarmed! This is a typical warning, seen when downloading most apps from the Internet. It also says "Apple checked it for malicious software and none was detected." If you trust Platform.Bible and would like to run it select "Open."
 
+Once the app is opened, you may see a dialog that says "Platform.Bible wants to use your confidential information stored in 'Platform.Bible Safe Storage' in your keychain."
+
+![mac-arm-keychain-access-warning](doc-meta/mac-arm-keychain-access-warning.png)
+
+We use encryption to keep your data safe, allowing access to keychain provides encryption services with `papi.dataProtection` so extensions can store user data securely. If you approve of this, please allow keychain access.
+
 ## Extension Developers
 
 In addition to the [core extensions that are included with Platform.Bible](https://github.com/paranext/paranext-core/extensions), developers can create other extensions for use in Platform.Bible or any white-label product based on it. Extensions can either be bundled with a product or installed individually by users. Please see [Extension Template wiki](https://github.com/paranext/paranext-extension-template/wiki) for guides on developing additional extensions.
