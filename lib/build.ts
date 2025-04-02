@@ -218,7 +218,6 @@ console.log('Build steps enabled:', {
     const electronBuilderConfig = json5.parse(electronBuilderConfigJson5);
 
     // Update product details
-    electronBuilderConfig.productName = productInfo.productName;
     electronBuilderConfig.appId = productInfo.appId;
     electronBuilderConfig.copyright = productInfo.copyright;
     electronBuilderConfig.publish = productInfo.electronBuilderPublish;
@@ -285,6 +284,7 @@ console.log('Build steps enabled:', {
 
     // Update product details
     releaseAppPackage.name = productInfo.name;
+    releaseAppPackage.productName = productInfo.productName;
     releaseAppPackage.version = productInfo.version;
     releaseAppPackage.description = productInfo.description;
     releaseAppPackage.author = productInfo.author;
