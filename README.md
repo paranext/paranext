@@ -128,7 +128,7 @@ cd paranext
 npm install
 ```
 
-## To update this respository from the template
+## To update this repository from the template
 
 This repository is forked from [`paranext`](https://github.com/paranext/paranext), which is periodically updated to reflect changes in [`Platform.Bible`](https://github.com/paranext/paranext-core) that affect white-labeling. We recommend you periodically update your repository by merging in the latest `paranext` template updates.
 
@@ -217,24 +217,42 @@ This will also destroy [any changes and untracked files you have made to the rep
 
 ## Publishing
 
-1. On each repository in your `productInfo.json`, create appropriate release branches.
-2. Create a branch of the form `release/*`, e.g. `release/v1.2.3`, or `release/v1.2.3-rc1`.
-3. Update the _version_ in your project's `package.json` (and `productInfo.json` if it has a separate version number), e.g.:
+These steps will walk you through releasing a version on GitHub and bumping the version to a new version so future changes apply to the new in-progress version.
+
+1. In each repository in your `productInfo.json`, create a release for the version you want to include in this repo's release. Then, set `branch` for each repo listed in `productInfo.json` to the tag corresponding to the release of that repo you want to include in this release. **DO NOT** leave `branch` as any kind of get ref that can change like a branch name. Otherwise, you will not be able to determine later exactly what code is included in the release.
+2. Make sure this repo's `package.json` version is on the version number you want to release. If it is not, run the `bump-versions` npm script to set the version to what you want to release. This script will create a branch named `bump-versions-<version>` from your current head with the needed changes. Open a PR and merge that new branch into the branch you plan to release from. For example, to bump branch `my-branch` to version 0.2.0, run the following:
+
    ```bash
-   npm version 1.2.3
+   git checkout my-branch
+   npm run bump-versions 0.2.0
    ```
-4. Change the `branch` name for each repository in your `productInfo.json` to the branch, tag, or commit name of the release of that repository you want to include in the release for this product.
-5. Create a new draft [GitHub **Release**](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository). Ensure the following are included:
-   - a _Tag version_, e.g. `v1.2.3`, choose _Create new tag on publish_.
-   - set the **Target** to the release branch.
-   - a copy of the change log. Click **Generate release notes** as a starting point.
-   - Click **Save draft**.
-6. Update `CHANGELOG.md` with changes in this release from the GitHub draft **Release**.
-7. Commit these changes to your release branch and push the commit to GitHub.
-8. Once the GitHub build **Action** has finished, it will add build artifact files to the draft release. Remove the `.blockmap` files and leave the `.yml` files and the installers and executable, e.g. `.exe` on Windows.
-9. Publish the release on GitHub.
-10. Remove the branch name specifiers for each repository in your `productInfo.json` that you added in step 4.
-11. Merge the release branch back into **main** with a merge commit.
+
+   Then create a PR and merge the `bump-versions-0.2.0` branch into `my-branch`. `my-branch` is now ready for release.
+
+3. Manually dispatch the Publish workflow in GitHub Actions targeting the branch you want to release from (in the previous example, this would be `my-branch`). This workflow creates a new pre-release for the version you intend to release and creates a new `bump-versions-<next_version>` branch to bump the version after the release so future changes apply to a new in-progress version instead of to the already released version. This workflow has the following inputs:
+
+   - `version`: enter the version you intend to publish (e.g. 0.2.0). This is simply for verification to make sure you release the code that you intend to release. It is compared to the version in the code, and the workflow will fail if they do not match.
+   - `newVersionAfterPublishing`: enter the version you want to bump to after releasing (e.g. 0.3.0-alpha.0). Future changes will apply to this new version instead of to the version that was already released. Leave blank if you don't want to bump
+   - `bumpRef`: enter the Git ref you want to create the bump versions branch from, e.g. `main`. Leave blank if you want to use the branch selected for the workflow run. For example, if you release from a stable branch named `release-prep`, you may want to bump the version on `main` so future development work happens on the new version, then you can rebase `main` onto `release-prep` when you are ready to start preparing the next stable release.
+
+4. In GitHub, adjust the new draft release's body and other metadata as desired, then publish the release.
+5. In [Snapcraft](https://snapcraft.io/platform-bible/releases), promote the newly uploaded release to the appropriate channel.
+6. Open a PR and merge the newly created `bump-versions-<next_version>` branch.
+
+### Publishing problems
+
+Following are some problems you may encounter while publishing and steps to solve them.
+
+#### `@swc/core` Failed to load native binding
+
+If you see the following error in the GitHub Actions workflow logs while packaging:
+
+```
+Module build failed (from ./node_modules/swc-loader/src/index.js):
+Error: Failed to load native binding
+```
+
+You may be including and building repos with a different effective version of `@swc/core` than `paranext-core` has. Please make sure the version of `@swc/core` in the `package-lock.json` of each rep you are including in `productInfo.json` is the same as its version in [`paranext-core/package-lock.json`](https://github.com/paranext/paranext-core/blob/main/package-lock.json). If they are not the same, please fix them to be the same in each repo by running `npm i -D @swc/core <version>` where the version is the version of `@swc/core` installed in `paranext-core/package-lock.json` (if you would like to set the version of `@swc/core` back to what it was before in `package.json` to stay synced with the extension template, change it back manually in `package.json` and then run `npm i`). If they are already the same, you may need to try regenerating your `package-lock.json` file by deleting it and running `npm i`.
 
 ## Troubleshooting
 
