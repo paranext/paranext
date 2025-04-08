@@ -14,6 +14,7 @@
     "save-and-build": "npm run run-ts-node -- ./lib/build.ts no-clean no-clone no-install",
     "build-ci": "npm run run-ts-node -- ./lib/build.ts no-save-repo-patches no-reset-before-build no-reset-after-build",
     "build-custom": "npm run run-ts-node -- ./lib/build.ts",
+    "bump-versions": "npm run run-ts-node -- ./lib/bump-versions.ts",
     "clean": "npm run run-ts-node -- ./lib/clean.ts",
     "reset-and-patch": "npm run run-ts-node -- ./lib/reset-and-patch.ts",
     "save-repo-patches": "npm run run-ts-node -- ./lib/save-repo-patches.ts",
