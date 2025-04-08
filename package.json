@@ -1,13 +1,30 @@
 {
   "name": "platform-bible",
-  "version": "0.0.1",
+  "version": "0.1.0-alpha.0",
   "description": "Build scripts to create a white-label application on Platform.Bible",
-  "keywords": ["electron", "platform", "bible", "translation", "typescript", "ts", "react", "node"],
+  "keywords": [
+    "electron",
+    "platform",
+    "bible",
+    "translation",
+    "typescript",
+    "ts",
+    "react",
+    "node"
+  ],
   "homepage": "https://github.com/paranext/paranext#readme",
-  "bugs": { "url": "https://github.com/paranext/paranext/issues" },
-  "repository": { "type": "git", "url": "git+https://github.com/paranext/paranext.git" },
+  "bugs": {
+    "url": "https://github.com/paranext/paranext/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paranext/paranext.git"
+  },
   "license": "MIT",
-  "author": { "name": "Paranext", "url": "https://github.com/paranext/" },
+  "author": {
+    "name": "Paranext",
+    "url": "https://github.com/paranext/"
+  },
   "type": "module",
   "scripts": {
     "run-ts-node": "node --no-warnings=ExperimentalWarning --loader ts-node/esm",
@@ -44,6 +61,10 @@
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2"
   },
-  "browserslist": ["current node"],
-  "volta": { "node": "20.18.0" }
+  "browserslist": [
+    "current node"
+  ],
+  "volta": {
+    "node": "20.18.0"
+  }
 }
