@@ -144,3 +144,27 @@ export async function applyRepoPatches(pathFromRepoRoot = '') {
 
   console.log('Successfully applied patches to each repo');
 }
+
+/**
+ * Check the repo for working changes
+ *
+ * @param quiet Whether to log an error if there are working changes
+ * @returns True if there were working changes, false otherwise
+ */
+export async function checkForWorkingChanges(quiet = false) {
+  // Check the git status to make sure there are no working changes
+  const status = await execCommand('git status --porcelain=v2', {
+    quiet: true,
+  });
+
+  if (status.stderr || status.stdout) {
+    if (!quiet)
+      console.error(
+        `Working changes detected! Please stash or commit your changes. git status output: ${JSON.stringify(
+          status,
+        )}`,
+      );
+    return true;
+  }
+  return false;
+}
