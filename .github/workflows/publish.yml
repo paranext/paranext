@@ -146,7 +146,6 @@ jobs:
           npm install
 
       - name: Prepare release - Windows
-        # If the branch is labeled as a release version (e.g. "release/v1.2.3"),
         if: ${{ matrix.os == env.OS_WINDOWS }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -171,7 +170,6 @@ jobs:
       #   path-to-binary: 'temp-build\\paranext-core\\release\\staged'
 
       - name: Prepare releases - macOS
-        # If the branch is labeled as a release version (e.g. "release/v1.2.3"),
         if: ${{ matrix.os == env.OS_MACOS }}
         # env:
         # The APPLE_* values are used for auto updates signing
@@ -186,7 +184,6 @@ jobs:
           mv ./temp-build/paranext-core/release/build/*.dmg ./temp-build/paranext-core/release/staged
 
       - name: Prepare release and publish to the snap store - Linux
-        # If the branch is labeled as a release version (e.g. "release/v1.2.3"),
         if: ${{ matrix.os == env.OS_LINUX }}
         env:
           # no hard links so dependencies are copied
