@@ -152,7 +152,7 @@ jobs:
       - name: Rename Windows exe to include GitHub Action Run ID
         if: ${{ matrix.os == env.OS_WINDOWS }}
         run: |
-          Get-ChildItem -Path ./release/build/*.exe | ForEach-Object {
+          Get-ChildItem -Path ./dist/*.exe | ForEach-Object {
             if (-not ($_.Name -like "*Setup*.exe")) {
               $newName = "$($_.BaseName)-${{ github.run_id }}.exe"
               Rename-Item -Path $_.FullName -NewName $newName
@@ -172,7 +172,7 @@ jobs:
       - name: Rename macOS dmg to include GitHub Action Run ID
         if: ${{ matrix.os == env.OS_MACOS }}
         run: |
-          for file in ./release/build/*.dmg; do
+          for file in ./dist/*.dmg; do
             newName="${file%.dmg}-${{ github.run_id }}.dmg"
             mv "$file" "$newName"
             echo "Renamed $file to $newName"
@@ -189,7 +189,7 @@ jobs:
       - name: Rename Linux snap to include GitHub Action Run ID
         if: ${{ matrix.os == env.OS_LINUX }}
         run: |
-          for file in ./release/build/*.snap; do
+          for file in ./dist/*.snap; do
             newName="${file%.snap}-${{ github.run_id }}.snap"
             mv "$file" "$newName"
             echo "Renamed $file to $newName"
