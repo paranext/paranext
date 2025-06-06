@@ -224,6 +224,7 @@ console.log('Build steps enabled:', {
     electronBuilderConfig.publish = productInfo.electronBuilderPublish;
     electronBuilderConfig.protocols.name = productInfo.name;
     electronBuilderConfig.protocols.schemes = [productInfo.name];
+    electronBuilderConfig.linux.executableName = productInfo.name;
 
     // Update snap plugs
     if (electronBuilderConfig.snap && Array.isArray(electronBuilderConfig.snap.plugs)) {
@@ -346,8 +347,8 @@ console.log('Build steps enabled:', {
 
     try {
       const buildCommand = shouldPublish
-        ? `npm exec electron-builder -- --publish always --${osName}`
-        : `npm exec electron-builder -- build --publish never --${osName}`;
+        ? `npx electron-builder --publish always --${osName}`
+        : `npx electron-builder build --publish never --${osName}`;
       await execCommand(buildCommand, {
         pathFromRepoRoot: CORE_REPO_INFO.dir,
         prefix: CORE_REPO_INFO.name,
