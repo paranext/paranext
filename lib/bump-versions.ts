@@ -122,6 +122,14 @@ const newMarketingVersionMoniker =
 
   // #region shared with https://github.com/paranext/paranext-extension-template/blob/main/lib/bump-versions.ts and https://github.com/paranext/paranext-multi-extension-template/blob/main/lib/bump-versions.ts
 
+  // Format the changes
+  try {
+    await execCommand(`npm run format`);
+  } catch (e) {
+    console.error(`Error on formatting changes: ${e}`);
+    process.exit(1);
+  }
+
   // Commit the changes
   try {
     await execCommand(`git commit -a -m "Bump versions to ${newVersion}"`);
