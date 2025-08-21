@@ -12,6 +12,14 @@
       "description": "Version number for the product",
       "type": "string"
     },
+    "marketingVersion": {
+      "description": "Human-readable \"marketing-level\" version to call this version of the product e.g. β1",
+      "type": "string"
+    },
+    "marketingVersionMoniker": {
+      "description": "Human-readable \"marketing-level\" version moniker to call this version of the product e.g. Developer Preview",
+      "type": "string"
+    },
     "description": {
       "description": "Short description explaining what the product is. Set to core's `release/app/package.json` `description`. Not sure where this is used.",
       "type": "string"

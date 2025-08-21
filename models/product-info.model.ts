@@ -17,6 +17,13 @@ export interface ProductInfo {
   name?: string;
   /** Version number for the product */
   version?: string;
+  /** Human-readable "marketing-level" version to call this version of the product e.g. β1 */
+  marketingVersion?: string;
+  /**
+   * Human-readable "marketing-level" version moniker to call this version of the product e.g.
+   * Developer Preview
+   */
+  marketingVersionMoniker?: string;
   /**
    * Short description explaining what the product is. Set to core's `release/app/package.json`
    * `description`. Not sure where this is used.
