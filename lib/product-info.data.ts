@@ -67,6 +67,8 @@ const productName = partialProductInfo.productName ?? packageInfo.productName ??
 const productInfo: ProductInfo = Object.freeze({
   name: packageInfo.name,
   version: packageInfo.version,
+  marketingVersion: packageInfo.marketingVersion,
+  marketingVersionMoniker: packageInfo.marketingVersionMoniker,
   description: packageInfo.description,
   productName,
   productShortName: productName,

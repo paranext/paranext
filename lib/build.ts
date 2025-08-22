@@ -287,6 +287,8 @@ console.log('Build steps enabled:', {
     // Update product details
     releaseAppPackage.name = productInfo.name;
     releaseAppPackage.version = productInfo.version;
+    releaseAppPackage.marketingVersion = productInfo.marketingVersion;
+    releaseAppPackage.marketingVersionMoniker = productInfo.marketingVersionMoniker;
     releaseAppPackage.description = productInfo.description;
     releaseAppPackage.author = productInfo.author;
 
