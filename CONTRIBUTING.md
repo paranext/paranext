@@ -67,9 +67,14 @@ The wiki uses GitHub Flavored Markdown. Here are some useful elements:
 
 [Link text](url)
 ![Image alt text](image-url)
-
-```code blocks```
 ```
+
+For code blocks, use triple backticks on separate lines:
+````markdown
+```
+your code here
+```
+````
 
 ## Getting Help
 

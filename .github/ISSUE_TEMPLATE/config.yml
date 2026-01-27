@@ -4,5 +4,5 @@ contact_links:
     url: https://github.com/paranext
     about: Visit other Paranext repositories for code-related issues
   - name: View Wiki
-    url: https://github.com/paranext/paranext/wiki
+    url: ../../wiki
     about: Browse the Paranext Wiki documentation
