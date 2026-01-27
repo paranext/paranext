@@ -1,0 +1,62 @@
+name: Wiki Documentation Issue
+description: Report an issue with wiki documentation or suggest improvements
+title: "[Wiki]: "
+labels: ["documentation", "wiki"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve the Paranext Wiki! Please provide details about the documentation issue or suggestion.
+        
+        **Note**: This repository is for wiki documentation only. For code-related issues, please visit the appropriate code repository.
+  
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue Type
+      description: What type of wiki issue are you reporting?
+      options:
+        - Incorrect or outdated information
+        - Missing documentation
+        - Unclear or confusing content
+        - Broken links or images
+        - Typo or formatting issue
+        - Suggestion for new content
+        - Other
+    validations:
+      required: true
+  
+  - type: input
+    id: wiki-page
+    attributes:
+      label: Wiki Page
+      description: Which wiki page does this issue relate to? (Provide the page name or URL)
+      placeholder: "e.g., Home, Getting Started, API Reference"
+    validations:
+      required: true
+  
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Please describe the issue or suggestion in detail
+      placeholder: |
+        - What is incorrect or missing?
+        - What improvements would you suggest?
+        - What information would be helpful?
+    validations:
+      required: true
+  
+  - type: textarea
+    id: expected-content
+    attributes:
+      label: Expected or Suggested Content
+      description: If applicable, describe what the content should say or include
+      placeholder: Describe what you think the correct or improved content should be
+  
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context, screenshots, or references that would be helpful
+      placeholder: Links, screenshots, references to other documentation, etc.

@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Paranext Organization
+    url: https://github.com/paranext
+    about: Visit other Paranext repositories for code-related issues
+  - name: View Wiki
+    url: https://github.com/paranext/paranext/wiki
+    about: Browse the Paranext Wiki documentation

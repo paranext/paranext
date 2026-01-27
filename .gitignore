@@ -1,0 +1,57 @@
+# This is a wiki-only repository - prevent accidental code commits
+
+# Common code/build artifacts
+*.o
+*.so
+*.dylib
+*.exe
+*.dll
+*.class
+*.pyc
+*.pyo
+__pycache__/
+*.jar
+*.war
+*.ear
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Dependency directories
+node_modules/
+vendor/
+venv/
+env/
+
+# Build outputs
+dist/
+build/
+target/
+out/
+bin/
+
+# Package manager files (allow only documentation of dependencies)
+package-lock.json
+yarn.lock
+Gemfile.lock
+composer.lock
+
+# Environment files
+.env
+.env.local
+*.key
+*.pem
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
